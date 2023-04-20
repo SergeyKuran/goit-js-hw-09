@@ -22,19 +22,19 @@ function onSubmit(evt) {
   const { amount, delay, step } = formRef.elements;
 
   const amountInput = parseInt(amount.value);
-  let delayInput = parseInt(delay.value);
+  let delayInput = Number(parseInt(delay.value));
   const stepInput = parseInt(step.value);
 
   for (let i = 0; i < amountInput; i += 1) {
-    let position = i + 1;
+    let position = Number(i + 1);
 
     createPromise(position, delayInput)
-      .then((position, delayInput) => {
+      .then(() => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delayInput}ms`
         );
       })
-      .catch((position, delayInput) => {
+      .catch(() => {
         Notiflix.Notify.failure(
           `❌ Rejected promise ${position} in ${delayInput}ms`
         );
